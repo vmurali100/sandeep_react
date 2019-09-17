@@ -32,11 +32,6 @@ export default function SandeepArray() {
   ];
 
   return (
-    // <div>
-    //   {users.map(obj => {
-
-    //   })}
-    // </div>
     <table border="1">
       <thead>
         {Object.keys(users[0]).map(key => {
