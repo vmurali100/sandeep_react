@@ -1,4 +1,5 @@
 import React from "react";
+import Table from "./Table";
 
 export default function SandeepArray() {
   let users = [
@@ -31,25 +32,5 @@ export default function SandeepArray() {
     }
   ];
 
-  return (
-    <table border="1">
-      <thead>
-        {Object.keys(users[0]).map(key => {
-          return <th>{key}</th>;
-        })}
-      </thead>
-
-      <tbody>
-        {users.map(obj => {
-          return (
-            <tr>
-              {Object.keys(obj).map(key => {
-                return <td>{obj[key]}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
+  return <Table data={users} />;
 }
