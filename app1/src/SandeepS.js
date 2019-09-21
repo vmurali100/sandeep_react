@@ -10,8 +10,53 @@ export default class SandeepS extends Component {
     console.log(this.state);
   }
 
+  deleteUser = i => {
+    console.log(i);
+
+    this.state.data.splice(i, 1);
+    this.setState({ data: this.state.data });
+  };
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <table border="1">
+          <thead>
+            <tr>
+              {Object.keys(this.state.data[0]).map(propperty => {
+                return <th key={propperty}>{propperty}</th>;
+              })}
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {this.state.data.map((obj, i) => {
+              console.log(i);
+              return (
+                <tr key={i}>
+                  {Object.keys(obj).map(key => {
+                    return <td key={key}>{obj[key]}</td>;
+                  })}
+                  <td>
+                    <button>Edit</button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => {
+                        this.deleteUser(i);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
   }
 }
 
