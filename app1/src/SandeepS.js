@@ -3,20 +3,40 @@ import React, { Component } from "react";
 export default class SandeepS extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      data: users
+      data: users,
+      editUser: sampleObj,
+      index: null
     };
-    console.log(this.state);
   }
 
   deleteUser = i => {
-    console.log(i);
-
     this.state.data.splice(i, 1);
     this.setState({ data: this.state.data });
   };
+  updateUser = () => {
+    console.log(this.state.editUser);
+    this.state.data[this.state.index] = this.state.editUser;
+    this.setState({ data: this.state.data });
+  };
+
+  handleChange = event => {
+    this.state.editUser[event.target.name] = event.target.value;
+    this.setState({ editUser: this.state.editUser });
+  };
+  editUser = i => {
+    this.setState({ editUser: this.state.data[i], index: i });
+  };
   render() {
+    const {
+      fname,
+      lname,
+      tel,
+      address,
+      city,
+      zip,
+      state
+    } = this.state.editUser;
     return (
       <div>
         <table border="1">
@@ -39,7 +59,13 @@ export default class SandeepS extends Component {
                     return <td key={key}>{obj[key]}</td>;
                   })}
                   <td>
-                    <button>Edit</button>
+                    <button
+                      onClick={() => {
+                        this.editUser(i);
+                      }}
+                    >
+                      Edit
+                    </button>
                   </td>
                   <td>
                     <button
@@ -55,10 +81,92 @@ export default class SandeepS extends Component {
             })}
           </tbody>
         </table>
+        <div>
+          <br />
+          <form>
+            <label>First Name</label>
+            <input
+              name="fname"
+              value={fname}
+              onChange={event => {
+                this.handleChange(event);
+              }}
+            />
+            <br />
+            <label>Last Name</label>
+            <input
+              name="lname"
+              value={lname}
+              onChange={event => {
+                this.handleChange(event);
+              }}
+            />
+            <br />
+            <label>Tel</label>
+            <input
+              name="tel"
+              value={tel}
+              onChange={event => {
+                this.handleChange(event);
+              }}
+            />
+            <br />
+            <label>Address</label>
+            <input
+              name="address"
+              value={address}
+              onChange={event => {
+                this.handleChange(event);
+              }}
+            />
+            <br />
+            <label>City</label>
+            <input
+              name="city"
+              value={city}
+              onChange={event => {
+                this.handleChange(event);
+              }}
+            />
+            <br />
+            <label>State</label>
+            <input
+              name="state"
+              value={state}
+              onChange={event => {
+                this.handleChange(event);
+              }}
+            />
+            <br />
+            <label>zip</label>
+            <input
+              name="zip"
+              value={zip}
+              onChange={event => {
+                this.handleChange(event);
+              }}
+            />
+            <br />
+            <br />
+            <button onClick={this.updateUser} type="button">
+              Update
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
 }
+
+let sampleObj = {
+  fname: "",
+  lname: "",
+  tel: "",
+  address: "",
+  city: "",
+  state: "",
+  zip: ""
+};
 
 let users = [
   {
