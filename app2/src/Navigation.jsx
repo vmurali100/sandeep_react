@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-export default class Navigation extends Component {
+class Navigation extends Component {
   constructor(props) {
     super(props);
 
     this.state = {};
     console.log(this.props);
   }
-  //   goToHome = () => {
-  //     this.props.history.push("/");
-  //   };
+  navigate = val => {
+    this.props.history.push(val);
+  };
   render() {
     return (
       <div>
@@ -25,8 +26,30 @@ export default class Navigation extends Component {
             <Link to="/sandeep">sandeep</Link>
           </li>
         </ul>
-        <button onClick={this.goToHome}>GO to Home</button>
+        <button
+          onClick={() => {
+            this.navigate("/");
+          }}
+        >
+          GO to Home
+        </button>
+        <button
+          onClick={() => {
+            this.navigate("/murali");
+          }}
+        >
+          GO to Murali
+        </button>
+        <button
+          onClick={() => {
+            this.navigate("/sandeep");
+          }}
+        >
+          GO to Sandeep
+        </button>
       </div>
     );
   }
 }
+
+export default withRouter(Navigation);
