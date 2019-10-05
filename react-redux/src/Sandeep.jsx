@@ -21,7 +21,6 @@ class Sandeep extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log(state);
   return {
     count: state.count
   };
